@@ -1,0 +1,8 @@
+.tables{
+    width: 50%;
+    height:300px;
+    border-collapse: collapse;
+}
+td, tr {
+    border: 7px solid rgb(170, 9, 170);
+}
