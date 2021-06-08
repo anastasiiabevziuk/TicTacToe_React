@@ -14,73 +14,37 @@ import './field.css';
 
 export default class Field extends Component {
    
+
 render(){
-    const {logics} = this.props;
+    const {logics, onFieldClick} = this.props;
     let elements;
     //let elementsTwo;
     //let elementsThree;
     
-    elements = logics.map((item)=> {
-        item.map((i)=>{
-            if(i === 0){
+    elements = logics.map((item, idx)=> {
+        item = item.map((itemTwo, idxTwo)=>{
+            let keyValue = idx * 10 + idxTwo;
+            if(itemTwo === 0){
             
-                return 'O';
-            }else if(i === 1){
+                return <td key={keyValue} id={keyValue}>0</td>;
+            }else if(itemTwo === 1){
             
-                return 'X';
-            } return "";
+                return <td key={keyValue} id={keyValue}>X</td>;
+            } 
+            return <td key={keyValue} id={keyValue}></td>;
         });
-        return item;
+        return <tr key={idx} id={idx}>{item}</tr>;
     });
-       /* elements = logics[0].map((item) => {
-            if(item === 0){
-                
-                return 'O';
-            }else if(item === 1){
-            
-                return 'X';
-            } return "";
-        });
-        elementsTwo = logics[1].map((item) => {
-            if(item === 0){
-                
-                return 'O';
-            }else if(item === 1){
-            
-                return 'X';
-            } return "";
-        });
-        elementsThree = logics[2].map((item) => {
-            if(item === 0){
-                
-                return 'O';
-            }else if(item === 1){
-            
-                return 'X';
-            } return "";
-        });*/
     
        
         return (
          <>
-                <table className="tables">
-                <tbody>
-                    <tr>
-                        <td>{elements[0][0]}</td>
-                        <td>{elements[0][1]}</td>
-                        <td>{elements[0][2]}</td>
-                            
-                    </tr>
-                    <tr>
-                        <td>{elements[1][0]}</td>
-                        <td>{elements[1][1]}</td>
-                        <td>{elements[1][2]}</td>
-                    </tr>
-                    <tr>
-                        <td>{elements[2][0]}</td>
-                        <td>{elements[2][1]}</td>
-                        <td>{elements[2][2]}</td>
-                    </tr>
+                <table 
+                onClick={onFieldClick}
+                className="tables"
+                >
+                <tbody >
+                {elements}
                 </tbody>
                 </table>
             </>
