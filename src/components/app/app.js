@@ -12,11 +12,13 @@ export default class App extends Component {
         super(props);
         this.state = {
             logics:[[null, null, null],[null, null, null],[null, null, null]],
+            
         }
         this.onFieldClick = this.onFieldClick.bind(this);
+        this.player = null;
     }
     onFieldClick(e){
-       
+        
         this.setState(({logics})=> {
             const newArr = logics.slice();
             let elem = e.target;
@@ -28,8 +30,18 @@ export default class App extends Component {
                 elemIdx2 = elemIdx1;
                 elemIdx1 = 0;
             }
+           
+            
+            if(this.player){
+                newArr[elemIdx1][elemIdx2] = 1;    
+                 this.player = false;
+            } else { 
+                newArr[elemIdx1][elemIdx2] = 0;    
+                this.player = true;
+           
+            }
 
-            newArr[elemIdx1][elemIdx2] = 1;              
+           
            
             return {
                 logics: newArr
