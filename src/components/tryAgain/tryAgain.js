@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import './tryAgain.css'
 
-const TryAgain = () => {
-    return (
-        <button className="button">Try Again</button>
-    );
+export default class TryAgain extends Component {
+
+    render(){
+
+        return (
+            <button className="button"
+            onClick={this.props.onClear}>Try Again</button>
+        );
+    }
 }
 
-export default TryAgain;
+
+    

@@ -12,11 +12,18 @@ export default class App extends Component {
         super(props);
         this.state = {
             logics:[[null, null, null],[null, null, null],[null, null, null]],
-            
+           
         }
         this.onFieldClick = this.onFieldClick.bind(this);
+        this.onClear = this.onClear.bind(this);
         this.player = null;
+        
     }
+
+    registerObserver(observer) {
+        this.observer = observer;
+    }
+
     onFieldClick(e){
         
         this.setState(({logics})=> {
@@ -31,6 +38,10 @@ export default class App extends Component {
                 elemIdx1 = 0;
             }
            
+            if(newArr[elemIdx1][elemIdx2] !== null ){
+                return alert("This button is busy");
+
+            }
             
             if(this.player){
                 newArr[elemIdx1][elemIdx2] = 1;    
@@ -44,10 +55,17 @@ export default class App extends Component {
            
            
             return {
-                logics: newArr
+                
+                logics: newArr,
+
             }
         });
 
+    }
+
+    onClear(){
+        this.setState({ logics:[[null, null, null],[null, null, null],[null, null, null]] });
+          return this.player = null;
     }
     
     render(){
@@ -57,8 +75,10 @@ export default class App extends Component {
                 <Field 
                 logics={this.state.logics}
                 onFieldClick={this.onFieldClick}/>
-                <Result/>
-                <TryAgain/>
+                <Result logics={this.state.logics}
+                player={this.player}/>
+                <TryAgain
+                onClear={this.onClear}/>
             </div>
         )
     }

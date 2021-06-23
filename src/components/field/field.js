@@ -2,24 +2,12 @@ import React, {Component} from 'react';
 
 import './field.css';
 
-
-/*function draw (arr){
-   
-    for(let i =0; i<3; i++){
-        for(let k =0; k<3; k++){
-           
-        }
-    }
-}*/
-
 export default class Field extends Component {
    
 
 render(){
     const {logics, onFieldClick} = this.props;
     let elements;
-    //let elementsTwo;
-    //let elementsThree;
     
     elements = logics.map((item, idx)=> {
         item = item.map((itemTwo, idxTwo)=>{
